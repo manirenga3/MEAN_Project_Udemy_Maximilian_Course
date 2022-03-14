@@ -1,0 +1,72 @@
+<mat-card>
+  <form (ngSubmit)="onSignup(signupForm)" #signupForm="ngForm">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        ngModel
+        name="email"
+        required
+        email
+        #email="ngModel"
+      />
+      <mat-error *ngIf="email.touched && email.errors?.required"
+        >Email is required</mat-error
+      >
+      <mat-error *ngIf="email.touched && email.errors?.email"
+        >Please enter a valid email</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="pwdInputType"
+        [(ngModel)]="pwd"
+        name="password"
+        required
+        pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+        #password="ngModel"
+      />
+      <mat-error *ngIf="password.touched && password.errors?.required"
+        >Password is required</mat-error
+      >
+      <mat-error *ngIf="password.touched && password.errors?.pattern"
+        >Password must be minimum 8 characters and must contains Capital letter,
+        Small letter, Number and Special Character</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input
+        matInput
+        [type]="pwdInputType"
+        [(ngModel)]="cnf"
+        name="confirmPassword"
+        required
+        #confirmPassword="ngModel"
+      />
+      <mat-error
+        *ngIf="confirmPassword.touched && confirmPassword.errors?.required"
+        >Confirm password is required</mat-error
+      >
+      <mat-hint *ngIf="confirmPassword.touched && cnf !== pwd"
+        >Passwords did not matched</mat-hint
+      >
+    </mat-form-field>
+    <mat-checkbox type="checkbox" color="primary" (change)="onShowPwds($event)">
+      Show Passwords</mat-checkbox
+    >
+    <br />
+    <br />
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="signupForm.invalid || cnf !== pwd"
+    >
+      Sign Up
+    </button>
+  </form>
+</mat-card>

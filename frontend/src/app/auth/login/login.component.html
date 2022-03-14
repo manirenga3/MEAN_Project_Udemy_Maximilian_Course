@@ -1,0 +1,49 @@
+<mat-card>
+  <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        ngModel
+        name="email"
+        required
+        email
+        #email="ngModel"
+      />
+      <mat-error *ngIf="email.touched && email.errors?.required"
+        >Email is required</mat-error
+      >
+      <mat-error *ngIf="email.touched && email.errors?.email"
+        >Please enter a valid email</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="pwdInputType"
+        ngModel
+        name="password"
+        required
+        #password="ngModel"
+      />
+      <mat-error *ngIf="password.touched && password.errors?.required"
+        >Password is required</mat-error
+      >
+    </mat-form-field>
+    <mat-checkbox type="checkbox" color="primary" (change)="onShowPwd($event)">
+      Show Password</mat-checkbox
+    >
+    <br />
+    <br />
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Login
+    </button>
+  </form>
+</mat-card>
