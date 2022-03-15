@@ -35,7 +35,10 @@ app.enable('trust proxy');
 
 // To implement CORS manually
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'http://mean-app-manirenga3.s3-website.ap-south-1.amazonaws.com'
+  );
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization,X-Auth_Token,X-Authorization'

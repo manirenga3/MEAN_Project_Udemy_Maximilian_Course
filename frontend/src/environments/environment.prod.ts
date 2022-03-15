@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  rootUrl: 'http://127.0.0.1:3000/api',
+  rootUrl:
+    'http://meanapp-env-1.eba-bwsb3byn.ap-south-1.elasticbeanstalk.com/api',
 };
